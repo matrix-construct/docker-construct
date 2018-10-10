@@ -21,7 +21,6 @@ RUN \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/${CC} 10 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/${CXX} 10
 
-# Install gflags from source to provide the cmake modules needed by RocksDB.
 RUN \
     mkdir -p /tmpbuild/gflags && \
     cd /tmpbuild/gflags && \
@@ -33,7 +32,6 @@ RUN \
     rm -Rf /tmpbuild/
 
 
-# Install RocksDB from source.
 RUN \
     mkdir -p /tmpbuild/rocksdb && \
     cd /tmpbuild/rocksdb && \
@@ -54,7 +52,7 @@ WORKDIR /build
 
 EXPOSE 8448
 
-ENV CONSTRUCT_VERSION=e2bc5a524599ab5b762b65184ce9f0bd29d4ad52
+ENV CONSTRUCT_VERSION=8a514808f945cfb3585aac9be52ba12c921a02a4
 
 RUN \
     curl -L https://github.com/matrix-construct/construct/archive/${CONSTRUCT_VERSION}.tar.gz \
