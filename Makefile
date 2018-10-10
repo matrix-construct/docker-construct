@@ -9,6 +9,12 @@ run:
 		-v `pwd`/data:/app/var/db/ \
 		--name construct construct-dev
 
+shell:
+	docker run -it \
+		-p 8448:8448 \
+		-v `pwd`/data:/app/var/db/ \
+		construct-dev /bin/bash
+
 stop:
 	docker stop construct
 
