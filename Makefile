@@ -6,13 +6,13 @@ run:
 	docker run --rm -d \
 		-e DOMAIN_NAME=local.io \
 		-p 8448:8448 \
-		-v `pwd`/data:/app/var/db/ \
+		-v `pwd`/data:/app/var/ \
 		--name construct construct-dev
 
 shell:
 	docker run -it \
 		-p 8448:8448 \
-		-v `pwd`/data:/app/var/db/ \
+		-v `pwd`/data:/app/var \
 		construct-dev /bin/bash
 
 stop:

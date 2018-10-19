@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV ROCKSDB_VERSION=5.14.3
+ENV ROCKSDB_VERSION=5.15.10
 ENV GFLAGS_VERSION=2.2.1
 ENV CXX=g++-8
 ENV CC=gcc-8
@@ -41,7 +41,10 @@ RUN \
     cmake -H. -Bbuild -GNinja \
         -DCMAKE_BUILD_TYPE=Release \
         -DWITH_TESTS=0 \
+        -DWITH_TOOLS=0 \
         -DBUILD_SHARED_LIBS=1 \
+        -DWITH_SNAPPY=1 \
+        -DWITH_ZLIB=1 \
         -DUSE_RTTI=1 && \
     cmake --build build --target install && \
     rm -Rf /tmpbuild/
@@ -52,7 +55,7 @@ WORKDIR /build
 
 EXPOSE 8448
 
-ENV CONSTRUCT_VERSION=8a514808f945cfb3585aac9be52ba12c921a02a4
+ENV CONSTRUCT_VERSION=f9fca347d8ce910299f69231c44cabbb6410101d
 
 RUN \
     curl -L https://github.com/matrix-construct/construct/archive/${CONSTRUCT_VERSION}.tar.gz \
